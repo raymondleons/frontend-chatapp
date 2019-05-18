@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { Router, Route} from 'react-router-dom'
+import store from './store'
+import {Provider} from 'react-redux'
+import history from './history'
+import LandingPage from '../src/containers/LandingPage'
+import ChatPage from '../src/containers/ChatPage'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Router history={history}>
+          <Route path='/' exact component={LandingPage}/>
+          <Route path='/chatapp' exact component={ChatPage}/>
+        </Router>
+      </Provider>
+    )
+  }
 }
 
-export default App;
+export default App
